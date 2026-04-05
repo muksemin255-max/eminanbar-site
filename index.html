@@ -3,9 +3,381 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Test</title>
+  <title>M. Emin Anbar | Hukuk & Danışmanlık</title>
+  <meta name="description" content="Marka hukuku, fikri mülkiyet hukuku, ticaret ve şirketler hukuku alanlarında butik hukuki danışmanlık." />
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #0b1220;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 18, 32, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
+    .brand-title {
+      font-size: 20px;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+    .brand-subtitle {
+      margin-top: 2px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+    }
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: rgba(255,255,255,0.82);
+    }
+    .hero {
+      padding: 86px 0 74px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 56px;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 720px;
+    }
+    .hero-text {
+      margin-top: 22px;
+      color: rgba(255,255,255,0.72);
+      font-size: 18px;
+      max-width: 650px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 20px;
+      border-radius: 18px;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+    .btn-primary {
+      background: #ffffff;
+      color: #0b1220;
+    }
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: transparent;
+      color: #ffffff;
+    }
+    .hero-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+    }
+    .hero-card-title {
+      font-size: 14px;
+      color: rgba(255,255,255,0.58);
+      margin-bottom: 18px;
+    }
+    .mini-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 16px;
+      margin-top: 12px;
+      color: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.02);
+    }
+    section {
+      padding: 68px 0;
+    }
+    .section-kicker {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.46);
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 40px;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+    .section-intro {
+      max-width: 760px;
+      color: rgba(255,255,255,0.72);
+      font-size: 17px;
+    }
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 34px;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 220px;
+    }
+    .card-line {
+      width: 56px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      margin-bottom: 18px;
+    }
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+    .card p {
+      margin: 0;
+      color: rgba(255,255,255,0.72);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .publication-card {
+      background: #10192d;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 170px;
+      display: flex;
+      align-items: flex-end;
+      color: rgba(255,255,255,0.9);
+    }
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      padding: 34px;
+    }
+    .contact-info-item {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+    .contact-info-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.52);
+      margin-bottom: 6px;
+    }
+    footer {
+      padding: 24px 0 40px;
+      color: rgba(255,255,255,0.45);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cards-3,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        gap: 16px;
+      }
+      h1 {
+        font-size: 42px;
+      }
+      h2 {
+        font-size: 32px;
+      }
+    }
+    @media (max-width: 540px) {
+      .container {
+        width: min(1120px, calc(100% - 28px));
+      }
+      h1 {
+        font-size: 34px;
+      }
+      .hero-text,
+      .section-intro {
+        font-size: 16px;
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
-<body style="margin:0; font-family:Arial,sans-serif; background:#0b1220; color:white; display:flex; min-height:100vh; align-items:center; justify-content:center;">
-  <h1>Site çalışıyor</h1>
+<body>
+  <header>
+    <div class="container nav">
+      <div>
+        <div class="brand-title">M. Emin Anbar</div>
+        <div class="brand-subtitle">Hukuk & Danışmanlık</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#anasayfa">Anasayfa</a>
+        <a href="#alanlar">Çalışma Alanları</a>
+        <a href="#yayinlar">Yayınlar</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="anasayfa">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Boutique Legal Practice</div>
+          <h1>Stratejik, seçici ve sonuç odaklı hukuki danışmanlık</h1>
+          <div class="hero-text">
+            Marka hukuku, fikri mülkiyet hukuku, ticaret ve şirketler hukuku alanlarında
+            bireyler ve şirketler için butik yaklaşım, dikkatli değerlendirme ve güçlü hukuki destek.
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#iletisim">İletişime Geç</a>
+            <a class="btn btn-secondary" href="#alanlar">Çalışma Alanları</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-title">Öne çıkan yaklaşım</div>
+          <div class="mini-card">Uyuşmazlık öncesi risk analizi ve stratejik hukuki değerlendirme</div>
+          <div class="mini-card">Kurumsal ve bireysel müvekkiller için seçici danışmanlık</div>
+          <div class="mini-card">Başvuru, sözleşme, koruma ve dava süreçlerinde bütüncül yaklaşım</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="alanlar">
+      <div class="container">
+        <div class="section-kicker">Çalışma Alanları</div>
+        <h2>Temel uzmanlık alanları</h2>
+        <div class="section-intro">
+          Müvekkil ihtiyaçlarına göre şekillenen, sonuç odaklı ve yüksek dikkat gerektiren hukuk
+          hizmetleri sunulmaktadır. Özellikle marka ve fikri mülkiyet uyuşmazlıklarında stratejik
+          yaklaşım ön plandadır.
+        </div>
+
+        <div class="cards-3">
+          <div class="card">
+            <div class="card-line"></div>
+            <h3>Marka Hukuku</h3>
+            <p>Marka başvuruları, itiraz süreçleri, hükümsüzlük ve tecavüz uyuşmazlıkları ile marka portföyü yönetimine ilişkin hukuki destek.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-line"></div>
+            <h3>Fikri Mülkiyet Hukuku</h3>
+            <p>Telif, tasarım, patent ve alan adı uyuşmazlıklarında koruma stratejileri, sözleşmeler ve dava süreçlerine yönelik danışmanlık.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-line"></div>
+            <h3>Ticaret ve Şirketler Hukuku</h3>
+            <p>Şirket yapılanmaları, ticari sözleşmeler, günlük kurumsal danışmanlık ve ticari uyuşmazlıklarda hukuki değerlendirme.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="yayinlar">
+      <div class="container">
+        <div class="section-kicker">Yayınlar</div>
+        <h2>Bilgi notları ve hukuki değerlendirmeler</h2>
+        <div class="section-intro">
+          İnternet sitesinde düzenli olarak yayınlanacak kısa bilgi notları ve değerlendirmeler için örnek alan.
+        </div>
+
+        <div class="cards-3">
+          <div class="publication-card">Marka başvurusu öncesi benzerlik araştırmasının hukuki önemi</div>
+          <div class="publication-card">Ticari sözleşmelerde temel risk alanları ve koruma yöntemleri</div>
+          <div class="publication-card">Avrupa Birliği hukuku perspektifinden fikri mülkiyet koruması</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="iletisim">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <div class="section-kicker">İletişim</div>
+            <h2>Hukuki danışmanlık talebi için iletişime geçin</h2>
+            <div class="section-intro">
+              İlk değerlendirme için uyuşmazlığın konusu ve temel detaylarının kısa şekilde paylaşılması faydalı olur.
+              Müvekkil kabulü ve çalışma koşulları ayrıca değerlendirilmektedir.
+            </div>
+          </div>
+
+          <div>
+            <div class="contact-info-item">
+              <div class="contact-info-label">E-posta</div>
+              <div>info@eminanbar.av.tr</div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-label">Konum</div>
+              <div>İstanbul, Türkiye</div>
+            </div>
+            <a class="btn btn-primary" href="mailto:info@eminanbar.av.tr">E-posta Gönder</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 M. Emin Anbar Hukuk & Danışmanlık. Tüm hakları saklıdır.</div>
+  </footer>
 </body>
 </html>
