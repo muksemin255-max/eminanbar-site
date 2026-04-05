@@ -4,257 +4,407 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>M. Emin Anbar | Hukuk & Danışmanlık</title>
-  <meta name="description" content="Marka hukuku, fikri mülkiyet hukuku, ticaret ve şirketler hukuku alanlarında butik hukuki danışmanlık." />
+  <meta
+    name="description"
+    content="Marka hukuku, fikri mülkiyet hukuku, Avrupa Birliği hukuku, ticaret ve şirketler hukuku alanlarında butik hukuki danışmanlık."
+  />
   <style>
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: #0b1220;
-      color: #ffffff;
-      line-height: 1.6;
+    :root{
+      --bg:#0b1220;
+      --bg-soft:#10192d;
+      --card:rgba(255,255,255,0.05);
+      --border:rgba(255,255,255,0.10);
+      --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.72);
+      --muted-2:rgba(255,255,255,0.50);
+      --white:#ffffff;
+      --max:1180px;
+      --radius:28px;
     }
-    a { color: inherit; text-decoration: none; }
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
     }
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(11, 18, 32, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:min(var(--max), calc(100% - 40px));
+      margin:0 auto;
     }
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 18px 0;
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(11,18,32,0.88);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
     }
-    .brand-title {
-      font-size: 20px;
-      margin: 0;
-      letter-spacing: 0.02em;
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:18px 0;
     }
-    .brand-subtitle {
-      margin-top: 2px;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.58);
+
+    .brand-title{
+      font-size:20px;
+      letter-spacing:.02em;
+      margin:0;
     }
-    .nav-links {
-      display: flex;
-      gap: 26px;
-      flex-wrap: wrap;
-      font-size: 14px;
-      color: rgba(255,255,255,0.82);
+
+    .brand-subtitle{
+      margin-top:3px;
+      font-size:11px;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      color:var(--muted-2);
     }
-    .hero {
-      padding: 86px 0 74px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+
+    .nav-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:24px;
+      font-size:14px;
+      color:rgba(255,255,255,0.82);
     }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 34px;
-      align-items: center;
+
+    .nav-links a{
+      position:relative;
+      padding-bottom:4px;
     }
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 12px;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 999px;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 18px;
+
+    .nav-links a.active::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:2px;
+      background:#fff;
+      border-radius:999px;
     }
-    h1 {
-      margin: 0;
-      font-size: 56px;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      max-width: 720px;
+
+    .page{
+      display:none;
+      min-height:calc(100vh - 78px);
     }
-    .hero-text {
-      margin-top: 22px;
-      color: rgba(255,255,255,0.72);
-      font-size: 18px;
-      max-width: 650px;
+
+    .page.active{
+      display:block;
     }
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 30px;
+
+    .hero{
+      position:relative;
+      min-height:78vh;
+      display:flex;
+      align-items:flex-end;
+      padding:110px 0 70px;
+      overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,0.08);
     }
-    .btn {
-      display: inline-block;
-      padding: 14px 20px;
-      border-radius: 18px;
-      font-size: 14px;
-      transition: 0.2s ease;
+
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(to bottom, rgba(9,14,24,.20), rgba(9,14,24,.72) 58%, rgba(9,14,24,.92)),
+        url("istanbul-bosphorus.png");
+      background-size:cover;
+      background-position:center center;
+      transform:scale(1.02);
     }
-    .btn-primary {
-      background: #ffffff;
-      color: #0b1220;
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      width:min(980px, 100%);
     }
-    .btn-secondary {
-      border: 1px solid rgba(255,255,255,0.14);
-      background: transparent;
-      color: #ffffff;
+
+    .eyebrow{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.72);
+      margin-bottom:18px;
     }
-    .hero-card {
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.04);
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+
+    h1{
+      margin:0;
+      font-size:64px;
+      line-height:1.04;
+      letter-spacing:-.035em;
+      max-width:820px;
     }
-    .hero-card-title {
-      font-size: 14px;
-      color: rgba(255,255,255,0.58);
-      margin-bottom: 18px;
+
+    .hero-text{
+      margin-top:24px;
+      max-width:760px;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.9;
     }
-    .mini-card {
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 18px;
-      padding: 16px;
-      margin-top: 12px;
-      color: rgba(255,255,255,0.9);
-      background: rgba(255,255,255,0.02);
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:32px;
     }
-    section {
-      padding: 68px 0;
+
+    .btn{
+      display:inline-block;
+      padding:14px 20px;
+      border-radius:18px;
+      font-size:14px;
+      transition:.2s ease;
     }
-    .section-kicker {
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.46);
-      margin-bottom: 10px;
+
+    .btn-primary{
+      background:#fff;
+      color:#0b1220;
     }
-    h2 {
-      margin: 0 0 14px;
-      font-size: 40px;
-      line-height: 1.12;
-      letter-spacing: -0.02em;
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.14);
+      color:#fff;
+      background:transparent;
     }
-    .section-intro {
-      max-width: 760px;
-      color: rgba(255,255,255,0.72);
-      font-size: 17px;
+
+    section{
+      padding:76px 0;
     }
-    .cards-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      margin-top: 34px;
+
+    .section-kicker{
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.46);
+      margin-bottom:10px;
     }
-    .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 24px;
-      padding: 24px;
-      min-height: 220px;
+
+    h2{
+      margin:0 0 14px;
+      font-size:44px;
+      line-height:1.12;
+      letter-spacing:-.025em;
     }
-    .card-line {
-      width: 56px;
-      height: 4px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.88);
-      margin-bottom: 18px;
+
+    .section-intro{
+      max-width:820px;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.9;
     }
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 24px;
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+      margin-top:34px;
     }
-    .card p {
-      margin: 0;
-      color: rgba(255,255,255,0.72);
-      font-size: 15px;
-      line-height: 1.8;
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:24px;
+      margin-top:34px;
     }
-    .publication-card {
-      background: #10192d;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 24px;
-      padding: 24px;
-      min-height: 170px;
-      display: flex;
-      align-items: flex-end;
-      color: rgba(255,255,255,0.9);
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:24px;
+      min-height:220px;
     }
-    .contact-box {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 28px;
-      padding: 34px;
+
+    .card-line{
+      width:56px;
+      height:4px;
+      border-radius:999px;
+      background:rgba(255,255,255,.88);
+      margin-bottom:18px;
     }
-    .contact-info-item {
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 18px;
-      padding: 16px;
-      margin-bottom: 12px;
-      background: rgba(255,255,255,0.02);
+
+    .card h3{
+      margin:0 0 12px;
+      font-size:24px;
+      line-height:1.2;
     }
-    .contact-info-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.52);
-      margin-bottom: 6px;
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.9;
     }
-    footer {
-      padding: 24px 0 40px;
-      color: rgba(255,255,255,0.45);
-      font-size: 13px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:32px;
+      align-items:center;
     }
-    @media (max-width: 900px) {
-      .hero-grid,
-      .cards-3,
-      .contact-box {
-        grid-template-columns: 1fr;
+
+    .image-panel{
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      min-height:520px;
+      background:var(--bg-soft);
+      box-shadow:0 24px 70px rgba(0,0,0,.30);
+    }
+
+    .image-panel img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .content-panel{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .content-panel p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.95;
+      font-size:16px;
+    }
+
+    .publication-card{
+      background:var(--bg-soft);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:26px;
+      min-height:210px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+    }
+
+    .publication-date{
+      margin-bottom:12px;
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.42);
+    }
+
+    .publication-title{
+      font-size:24px;
+      line-height:1.35;
+      margin:0 0 10px;
+    }
+
+    .publication-summary{
+      margin:0;
+      color:var(--muted);
+      line-height:1.85;
+      font-size:15px;
+    }
+
+    .contact-box{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:28px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:34px;
+    }
+
+    .contact-info-item{
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:16px;
+      margin-bottom:12px;
+      background:rgba(255,255,255,0.02);
+    }
+
+    .contact-info-label{
+      font-size:13px;
+      color:var(--muted-2);
+      margin-bottom:6px;
+    }
+
+    footer{
+      padding:30px 0 42px;
+      color:rgba(255,255,255,0.45);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,0.08);
+      margin-top:20px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr 1fr 1fr 1fr;
+      gap:24px;
+    }
+
+    .footer-title{
+      color:#fff;
+      margin-bottom:12px;
+      font-size:14px;
+    }
+
+    .footer-col div,
+    .footer-col a{
+      display:block;
+      margin-bottom:8px;
+      color:rgba(255,255,255,0.56);
+    }
+
+    @media (max-width: 980px){
+      h1{font-size:46px}
+      h2{font-size:34px}
+      .grid-3,
+      .grid-2,
+      .split,
+      .contact-box,
+      .footer-grid{
+        grid-template-columns:1fr;
       }
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .nav-links {
-        gap: 16px;
-      }
-      h1 {
-        font-size: 42px;
-      }
-      h2 {
-        font-size: 32px;
-      }
+      .image-panel{min-height:420px}
     }
-    @media (max-width: 540px) {
-      .container {
-        width: min(1120px, calc(100% - 28px));
+
+    @media (max-width: 640px){
+      .container{width:min(var(--max), calc(100% - 28px))}
+      .nav{
+        flex-direction:column;
+        align-items:flex-start;
       }
-      h1 {
-        font-size: 34px;
-      }
+      .nav-links{gap:16px}
+      h1{font-size:36px}
       .hero-text,
-      .section-intro {
-        font-size: 16px;
+      .section-intro{font-size:16px}
+      .hero-actions{
+        flex-direction:column;
       }
-      .hero-actions {
-        flex-direction: column;
+      .btn{
+        width:100%;
+        text-align:center;
       }
-      .btn {
-        width: 100%;
-        text-align: center;
+      .hero{
+        min-height:70vh;
+        padding:90px 0 54px;
       }
     }
   </style>
@@ -266,118 +416,287 @@
         <div class="brand-title">M. Emin Anbar</div>
         <div class="brand-subtitle">Hukuk & Danışmanlık</div>
       </div>
+
       <nav class="nav-links">
-        <a href="#anasayfa">Anasayfa</a>
-        <a href="#alanlar">Çalışma Alanları</a>
-        <a href="#yayinlar">Yayınlar</a>
-        <a href="#iletisim">İletişim</a>
+        <a href="#home" data-route="home">Ana Sayfa</a>
+        <a href="#practice-areas" data-route="practice-areas">Çalışma Alanları</a>
+        <a href="#publications" data-route="publications">Yayınlar</a>
+        <a href="#contact" data-route="contact">İletişim</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero" id="anasayfa">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Boutique Legal Practice</div>
-          <h1>Stratejik, seçici ve sonuç odaklı hukuki danışmanlık</h1>
+    <section class="page" id="page-home">
+      <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+          <div class="eyebrow">Butik Hukuki Danışmanlık</div>
+          <h1>Stratejik hukuki danışmanlık. Karmaşık işlerde rafine butik uzmanlık.</h1>
           <div class="hero-text">
-            Marka hukuku, fikri mülkiyet hukuku, ticaret ve şirketler hukuku alanlarında
-            bireyler ve şirketler için butik yaklaşım, dikkatli değerlendirme ve güçlü hukuki destek.
+            Marka hukuku, fikri mülkiyet hukuku, Avrupa Birliği hukuku, ticaret ve şirketler hukuku
+            alanlarında seçici, dikkatli ve sonuç odaklı bir hukuk pratiği.
           </div>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#iletisim">İletişime Geç</a>
-            <a class="btn btn-secondary" href="#alanlar">Çalışma Alanları</a>
-          </div>
-        </div>
-
-        <div class="hero-card">
-          <div class="hero-card-title">Öne çıkan yaklaşım</div>
-          <div class="mini-card">Uyuşmazlık öncesi risk analizi ve stratejik hukuki değerlendirme</div>
-          <div class="mini-card">Kurumsal ve bireysel müvekkiller için seçici danışmanlık</div>
-          <div class="mini-card">Başvuru, sözleşme, koruma ve dava süreçlerinde bütüncül yaklaşım</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="alanlar">
-      <div class="container">
-        <div class="section-kicker">Çalışma Alanları</div>
-        <h2>Temel uzmanlık alanları</h2>
-        <div class="section-intro">
-          Müvekkil ihtiyaçlarına göre şekillenen, sonuç odaklı ve yüksek dikkat gerektiren hukuk
-          hizmetleri sunulmaktadır. Özellikle marka ve fikri mülkiyet uyuşmazlıklarında stratejik
-          yaklaşım ön plandadır.
-        </div>
-
-        <div class="cards-3">
-          <div class="card">
-            <div class="card-line"></div>
-            <h3>Marka Hukuku</h3>
-            <p>Marka başvuruları, itiraz süreçleri, hükümsüzlük ve tecavüz uyuşmazlıkları ile marka portföyü yönetimine ilişkin hukuki destek.</p>
-          </div>
-
-          <div class="card">
-            <div class="card-line"></div>
-            <h3>Fikri Mülkiyet Hukuku</h3>
-            <p>Telif, tasarım, patent ve alan adı uyuşmazlıklarında koruma stratejileri, sözleşmeler ve dava süreçlerine yönelik danışmanlık.</p>
-          </div>
-
-          <div class="card">
-            <div class="card-line"></div>
-            <h3>Ticaret ve Şirketler Hukuku</h3>
-            <p>Şirket yapılanmaları, ticari sözleşmeler, günlük kurumsal danışmanlık ve ticari uyuşmazlıklarda hukuki değerlendirme.</p>
+            <a class="btn btn-primary" href="#contact">İletişime Geç</a>
+            <a class="btn btn-secondary" href="#practice-areas">Çalışma Alanları</a>
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="yayinlar">
-      <div class="container">
-        <div class="section-kicker">Yayınlar</div>
-        <h2>Bilgi notları ve hukuki değerlendirmeler</h2>
-        <div class="section-intro">
-          İnternet sitesinde düzenli olarak yayınlanacak kısa bilgi notları ve değerlendirmeler için örnek alan.
-        </div>
+      <section>
+        <div class="container">
+          <div class="section-kicker">Çalışma Alanları</div>
+          <h2>Temel uzmanlık alanları</h2>
+          <div class="section-intro">
+            Framer örneğindeki practice areas yapısı esas alınarak; marka hukuku, fikri mülkiyet,
+            Avrupa Birliği hukuku ve ticaret hukuku ekseninde sade ama prestijli bir ana sayfa düzeni kuruldu.
+          </div>
 
-        <div class="cards-3">
-          <div class="publication-card">Marka başvurusu öncesi benzerlik araştırmasının hukuki önemi</div>
-          <div class="publication-card">Ticari sözleşmelerde temel risk alanları ve koruma yöntemleri</div>
-          <div class="publication-card">Avrupa Birliği hukuku perspektifinden fikri mülkiyet koruması</div>
-        </div>
-      </div>
-    </section>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-line"></div>
+              <h3>Avrupa Birliği Hukuku</h3>
+              <p>AB hukuku bağlamında uyum, düzenleyici çerçeve, rekabet hukuku, ortak ticaret politikası ve sınır ötesi hukuki meselelerde danışmanlık.</p>
+            </div>
 
-    <section id="iletisim">
-      <div class="container">
-        <div class="contact-box">
-          <div>
-            <div class="section-kicker">İletişim</div>
-            <h2>Hukuki danışmanlık talebi için iletişime geçin</h2>
-            <div class="section-intro">
-              İlk değerlendirme için uyuşmazlığın konusu ve temel detaylarının kısa şekilde paylaşılması faydalı olur.
-              Müvekkil kabulü ve çalışma koşulları ayrıca değerlendirilmektedir.
+            <div class="card">
+              <div class="card-line"></div>
+              <h3>Marka ve Fikri Mülkiyet Hukuku</h3>
+              <p>Marka başvuruları, itiraz süreçleri, marka tecavüzü, telif ve diğer fikri mülkiyet uyuşmazlıklarında koruma ve strateji odaklı yaklaşım.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-line"></div>
+              <h3>Ticaret ve Şirketler Hukuku</h3>
+              <p>Şirket yapılanmaları, ticari sözleşmeler, kurumsal danışmanlık ve ticari uyuşmazlıklarda müvekkil ihtiyaçlarına göre şekillenen hukuki destek.</p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div>
-            <div class="contact-info-item">
-              <div class="contact-info-label">E-posta</div>
-              <div>info@eminanbar.av.tr</div>
-            </div>
-            <div class="contact-info-item">
-              <div class="contact-info-label">Konum</div>
-              <div>İstanbul, Türkiye</div>
-            </div>
-            <a class="btn btn-primary" href="mailto:info@eminanbar.av.tr">E-posta Gönder</a>
+      <section>
+        <div class="container split">
+          <div class="image-panel">
+            <img src="galata.png" alt="İstanbul Galata görünümü" />
+          </div>
+          <div class="content-panel">
+            <div class="section-kicker">Butik Yaklaşım</div>
+            <h2>Seçici, stratejik ve yüksek dikkat gerektiren hukuk hizmeti</h2>
+            <p>M. Emin Anbar, İstanbul merkezli bir avukat olarak özellikle marka hukuku, fikri mülkiyet hukuku, Avrupa Birliği hukuku ve ticaret hukuku alanlarında çalışmaktadır.</p>
+            <p>Anayasa Mahkemesi, Rekabet Kurumu, Sermaye Piyasası Kurulu ve Hazine teşkilatındaki kurumsal deneyim; kamu hukuku, rekabet hukuku ve düzenleyici alanlarda güçlü bir perspektif kazandırmıştır.</p>
+            <p>AB hukuku alanındaki akademik çalışmalar özellikle AB rekabet hukuku, AB marka ve patent hukuku ile Ortak Ticaret Politikası üzerinde yoğunlaşmaktadır.</p>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section>
+        <div class="container split">
+          <div class="content-panel">
+            <div class="section-kicker">Uluslararası Perspektif</div>
+            <h2>Akademik derinlik ve kurumsal perspektif</h2>
+            <p>Yüksek lisans ve uygulama deneyimi birlikte ele alındığında; yalnızca pozitif hukukun teknik okumasına değil, düzenleyici mantığın ve kurumsal işleyişin anlaşılmasına da dayanan bir yaklaşım hedeflenmektedir.</p>
+            <p>Bu yapı özellikle marka, rekabet, AB hukuku ve ticari uyuşmazlıklar gibi çok katmanlı alanlarda müvekkile daha dikkatli ve rafine hukuki değerlendirme sunulmasına imkân verir.</p>
+          </div>
+          <div class="image-panel">
+            <img src="emin-eu.png" alt="Avrupa Parlamentosu içinde fotoğraf" />
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="page-practice-areas">
+      <section>
+        <div class="container">
+          <div class="section-kicker">Çalışma Alanları</div>
+          <h2>Uzmanlık alanları</h2>
+          <div class="section-intro">
+            Framer örneğindeki ayrı practice areas sayfasına uygun şekilde; her alan için daha geniş açıklama içeren müstakil bir görünüm.
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-line"></div>
+              <h3>Avrupa Birliği Hukuku</h3>
+              <p>AB hukukunun kurumsal yapısı, iç pazar, dört temel özgürlük, ortak ticaret politikası, AB rekabet hukuku ve uyum eksenli düzenleyici meselelerde hukuki değerlendirme ve danışmanlık.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-line"></div>
+              <h3>Marka Hukuku</h3>
+              <p>Marka başvuruları, itirazlar, hükümsüzlük ve tecavüz uyuşmazlıkları, portföy yönetimi, lisans ve devir ilişkileri ile marka koruma stratejilerinde hukuki destek.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-line"></div>
+              <h3>Fikri Mülkiyet Hukuku</h3>
+              <p>Telif, tasarım, patent, alan adı ve bağlantılı fikri hak uyuşmazlıklarında koruma, sözleşmesel yapılandırma ve uyuşmazlık çözümüne yönelik danışmanlık.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-line"></div>
+              <h3>Ticaret ve Şirketler Hukuku</h3>
+              <p>Şirket kuruluşu, kurumsal yapılanma, günlük ticari danışmanlık, ticari sözleşmeler, yönetimsel risklerin dağılımı ve şirketler hukukuna ilişkin uyuşmazlıklarda hukuki destek.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-line"></div>
+              <h3>Tahkim ve Uyuşmazlık Çözümü</h3>
+              <p>Milletlerarası tahkim, kurumsal tahkim ve sözleşme temelli uyuşmazlıklarda stratejik pozisyon belirleme, ön değerlendirme ve tahkim eksenli hukuki çalışma.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-line"></div>
+              <h3>Anayasa Mahkemesi ve Bireysel Başvuru</h3>
+              <p>Temel hak ve özgürlüklerin korunması bağlamında anayasal şikâyet ve insan hakları eksenli ileri hukuk analizlerine dayanan başvuru stratejileri.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="page-publications">
+      <section>
+        <div class="container">
+          <div class="section-kicker">Yayınlar</div>
+          <h2>Makaleler ve kısa değerlendirmeler</h2>
+          <div class="section-intro">
+            Şimdilik statik bir yayın alanı olarak kuruldu. Daha sonra istersen bunu gerçek blog altyapısına dönüştürürüz.
+          </div>
+
+          <div class="grid-3">
+            <article class="publication-card">
+              <div class="publication-date">Mart 2026</div>
+              <h3 class="publication-title">AB Hukukunda Güncel Gelişmeler</h3>
+              <p class="publication-summary">Avrupa Birliği hukukunda son dönemde öne çıkan düzenleyici ve yargısal gelişmelere dair kısa değerlendirme.</p>
+            </article>
+
+            <article class="publication-card">
+              <div class="publication-date">Şubat 2026</div>
+              <h3 class="publication-title">Küresel İşletmeler İçin Marka Stratejisi</h3>
+              <p class="publication-summary">Uluslararası ölçekte faaliyet gösteren işletmeler bakımından marka koruması ve portföy yönetimine ilişkin temel notlar.</p>
+            </article>
+
+            <article class="publication-card">
+              <div class="publication-date">Ocak 2026</div>
+              <h3 class="publication-title">Şirket Yapılanmasına İlişkin Örnek İnceleme</h3>
+              <p class="publication-summary">Kurumsal yapılanma, sözleşmesel risk dağılımı ve şirket içi karar mekanizmalarına ilişkin seçilmiş bir vaka incelemesi.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="page-contact">
+      <section>
+        <div class="container">
+          <div class="section-kicker">İletişim</div>
+          <h2>Hukuki danışmanlık talebi için iletişime geçin</h2>
+          <div class="section-intro">
+            İlk değerlendirme için uyuşmazlığın konusu ve temel detaylarının kısa şekilde paylaşılması faydalı olur. Müvekkil kabulü ve çalışma koşulları ayrıca değerlendirilir.
+          </div>
+
+          <div class="contact-box" style="margin-top:32px;">
+            <div>
+              <h3 style="margin-top:0;font-size:28px;">İlk temas ve ön değerlendirme</h3>
+              <p style="color:var(--muted);line-height:1.9;">
+                Uyuşmazlığın temel çerçevesi, ilgili taraflar ve önemli tarih bilgileri kısa şekilde paylaşıldığında
+                ilk hukuki değerlendirme çok daha verimli yapılabilmektedir.
+              </p>
+              <img
+                src="istanbul-bosphorus.png"
+                alt="İstanbul Boğaz görünümü"
+                style="margin-top:24px;border-radius:24px;border:1px solid var(--border);height:280px;width:100%;object-fit:cover;"
+              />
+            </div>
+
+            <div>
+              <div class="contact-info-item">
+                <div class="contact-info-label">E-posta</div>
+                <div>av.eminanbar@gmail.com</div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-label">Telefon</div>
+                <div>+90 543 594 37 57</div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-label">Konum</div>
+                <div>İstanbul, Türkiye</div>
+              </div>
+
+              <a class="btn btn-primary" href="mailto:av.eminanbar@gmail.com">E-posta Gönder</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
   </main>
 
   <footer>
-    <div class="container">© 2026 M. Emin Anbar Hukuk & Danışmanlık. Tüm hakları saklıdır.</div>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="footer-title">M. Emin Anbar</div>
+        <div>Hukuk & Danışmanlık</div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-title">Menü</div>
+        <a href="#home">Ana Sayfa</a>
+        <a href="#practice-areas">Çalışma Alanları</a>
+        <a href="#publications">Yayınlar</a>
+        <a href="#contact">İletişim</a>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-title">İletişim</div>
+        <div>av.eminanbar@gmail.com</div>
+        <div>+90 543 594 37 57</div>
+        <div>İstanbul, Türkiye</div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-title">Bilgilendirme</div>
+        <div>Bu internet sitesi bilgilendirme amaçlıdır.</div>
+        <div>TBB reklam yasağı ve meslek kuralları gözetilerek hazırlanmıştır.</div>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    function getRoute() {
+      const hash = window.location.hash.replace("#", "");
+      if (!hash) return "home";
+      return hash;
+    }
+
+    function activateRoute(route) {
+      const validRoutes = ["home", "practice-areas", "publications", "contact"];
+      const current = validRoutes.includes(route) ? route : "home";
+
+      document.querySelectorAll(".page").forEach((page) => {
+        page.classList.remove("active");
+      });
+
+      const activePage = document.getElementById("page-" + current);
+      if (activePage) activePage.classList.add("active");
+
+      document.querySelectorAll("[data-route]").forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("data-route") === current) {
+          link.classList.add("active");
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+
+    window.addEventListener("hashchange", () => {
+      activateRoute(getRoute());
+    });
+
+    activateRoute(getRoute());
+  </script>
 </body>
 </html>
