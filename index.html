@@ -1,278 +1,383 @@
-import React from "react";
-
-const NAVY = "#0b1220";
-const CARD = "rgba(255,255,255,0.05)";
-const BORDER = "rgba(255,255,255,0.10)";
-const MUTED = "rgba(255,255,255,0.72)";
-
-const practiceAreas = [
-  {
-    title: "Avrupa Birliği Hukuku",
-    text: "AB hukuku bağlamında uyum, sınır ötesi işlemler ve düzenleyici çerçeveler hakkında danışmanlık. Karmaşık operasyonlar için güncel ve hassas hukuki değerlendirme."
-  },
-  {
-    title: "Fikri Mülkiyet ve Marka Hukuku",
-    text: "Marka ve diğer fikri mülkiyet haklarının korunması, tescili ve uyuşmazlık çözümü süreçlerinde müvekkile özel stratejik yaklaşım."
-  },
-  {
-    title: "Ticaret ve Şirketler Hukuku",
-    text: "Şirket yapılanmaları, yönetişim, ticari sözleşmeler ve karmaşık işlemlerde şirketler ile girişimcilere kapsamlı hukuki destek."
-  },
-  {
-    title: "Tahkim ve Uyuşmazlık Çözümü",
-    text: "Ulusal ve milletlerarası tahkim süreçlerinde stratejik danışmanlık, uyuşmazlık yönetimi ve tahkim yargılamasında temsil hizmeti."
-  }
-];
-
-const publications = [
-  { title: "AB Hukukunda Güncel Gelişmeler", date: "Mart 2026", summary: "Avrupa Birliği hukukunda son dönemde öne çıkan düzenleyici ve yargısal gelişmelere dair kısa değerlendirme." },
-  { title: "Küresel İşletmeler İçin Marka Stratejisi", date: "Şubat 2026", summary: "Uluslararası ölçekte faaliyet gösteren işletmeler bakımından marka koruması ve portföy yönetimi üzerine notlar." },
-  { title: "Şirket Yapılanmasına İlişkin Örnek İnceleme", date: "Ocak 2026", summary: "Kurumsal yapılanma ve sözleşmesel risk dağılımı açısından seçilmiş bir vaka analizi." }
-];
-
-function pathOf() {
-  if (typeof window === "undefined") return "/";
-  return window.location.pathname;
-}
-
-function navigate(path) {
-  if (typeof window !== "undefined") {
-    window.history.pushState({}, "", path);
-    window.dispatchEvent(new PopStateEvent("popstate"));
-  }
-}
-
-function AppLink({ href, children, className = "" }) {
-  const onClick = (e) => {
-    if (href.startsWith("http") || href.startsWith("mailto:")) return;
-    e.preventDefault();
-    navigate(href);
-  };
-
-  return (
-    <a href={href} onClick={onClick} className={className}>
-      {children}
-    </a>
-  );
-}
-
-function Layout({ children }) {
-  return (
-    <div className="min-h-screen bg-[--navy] text-white" style={{ ['--navy']: NAVY }}>
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[rgba(11,18,32,0.92)] backdrop-blur">
-        <div className="mx-auto flex w-[min(1120px,calc(100%-40px))] flex-wrap items-center justify-between gap-5 py-5">
-          <div>
-            <div className="text-[20px] tracking-[0.02em]">EA Law Office</div>
-            <div className="mt-1 text-[11px] uppercase tracking-[0.22em] text-white/60">M. Emin Anbar</div>
-          </div>
-          <nav className="flex flex-wrap gap-6 text-sm text-white/80">
-            <AppLink href="/">Ana Sayfa</AppLink>
-            <AppLink href="/practice-areas">Çalışma Alanları</AppLink>
-            <AppLink href="/publications">Yayınlar</AppLink>
-            <AppLink href="/contact">İletişim</AppLink>
-          </nav>
-        </div>
-      </header>
-
-      <main>{children}</main>
-
-      <footer className="border-t border-white/10 py-10 text-sm text-white/50">
-        <div className="mx-auto grid w-[min(1120px,calc(100%-40px))] gap-8 md:grid-cols-4">
-          <div>
-            <div className="mb-3 text-white">EA Law Office</div>
-            <div><AppLink href="/">Ana Sayfa</AppLink></div>
-            <div><AppLink href="/practice-areas">Çalışma Alanları</AppLink></div>
-            <div><AppLink href="/publications">Yayınlar</AppLink></div>
-          </div>
-          <div>
-            <div className="mb-3 text-white">Alanlar</div>
-            <div>AB Hukuku</div>
-            <div>Fikri Mülkiyet ve Marka</div>
-            <div>Ticaret Hukuku</div>
-          </div>
-          <div>
-            <div className="mb-3 text-white">İletişim</div>
-            <div>av.eminanbar@gmail.com</div>
-            <div>+90 543 594 37 57</div>
-            <div>Nurol Tower Plaza, Mecidiyeköy, İstanbul</div>
-          </div>
-          <div>
-            <div className="mb-3 text-white">Bilgilendirme</div>
-            <div>Bu internet sitesi bilgilendirme amaçlıdır.</div>
-            <div className="mt-3">TBB Reklam Yasağı Yönetmeliği gözetilerek hazırlanmıştır.</div>
-          </div>
-        </div>
-      </footer>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M. Emin Anbar | Hukuk & Danışmanlık</title>
+  <meta name="description" content="Marka hukuku, fikri mülkiyet hukuku, ticaret ve şirketler hukuku alanlarında butik hukuki danışmanlık." />
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #0b1220;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 18, 32, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
+    .brand-title {
+      font-size: 20px;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+    .brand-subtitle {
+      margin-top: 2px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+    }
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: rgba(255,255,255,0.82);
+    }
+    .hero {
+      padding: 86px 0 74px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 56px;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 720px;
+    }
+    .hero-text {
+      margin-top: 22px;
+      color: rgba(255,255,255,0.72);
+      font-size: 18px;
+      max-width: 650px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 20px;
+      border-radius: 18px;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+    .btn-primary {
+      background: #ffffff;
+      color: #0b1220;
+    }
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: transparent;
+      color: #ffffff;
+    }
+    .hero-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+    }
+    .hero-card-title {
+      font-size: 14px;
+      color: rgba(255,255,255,0.58);
+      margin-bottom: 18px;
+    }
+    .mini-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 16px;
+      margin-top: 12px;
+      color: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.02);
+    }
+    section {
+      padding: 68px 0;
+    }
+    .section-kicker {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.46);
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 40px;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+    .section-intro {
+      max-width: 760px;
+      color: rgba(255,255,255,0.72);
+      font-size: 17px;
+    }
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 34px;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 220px;
+    }
+    .card-line {
+      width: 56px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      margin-bottom: 18px;
+    }
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+    .card p {
+      margin: 0;
+      color: rgba(255,255,255,0.72);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .publication-card {
+      background: #10192d;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 170px;
+      display: flex;
+      align-items: flex-end;
+      color: rgba(255,255,255,0.9);
+    }
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      padding: 34px;
+    }
+    .contact-info-item {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+    .contact-info-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.52);
+      margin-bottom: 6px;
+    }
+    footer {
+      padding: 24px 0 40px;
+      color: rgba(255,255,255,0.45);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cards-3,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        gap: 16px;
+      }
+      h1 {
+        font-size: 42px;
+      }
+      h2 {
+        font-size: 32px;
+      }
+    }
+    @media (max-width: 540px) {
+      .container {
+        width: min(1120px, calc(100% - 28px));
+      }
+      h1 {
+        font-size: 34px;
+      }
+      .hero-text,
+      .section-intro {
+        font-size: 16px;
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div>
+        <div class="brand-title">M. Emin Anbar</div>
+        <div class="brand-subtitle">Hukuk & Danışmanlık</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#anasayfa">Anasayfa</a>
+        <a href="#alanlar">Çalışma Alanları</a>
+        <a href="#yayinlar">Yayınlar</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
     </div>
-  );
-}
+  </header>
 
-function Hero() {
-  return (
-    <section className="border-b border-white/10 py-20 md:py-28">
-      <div className="mx-auto grid w-[min(1120px,calc(100%-40px))] items-center gap-10 md:grid-cols-[1.1fr_0.9fr]">
+  <main>
+    <section class="hero" id="anasayfa">
+      <div class="container hero-grid">
         <div>
-          <div className="mb-5 inline-block rounded-full border border-white/15 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-white/65">
-            Butik Hukuki Danışmanlık
+          <div class="eyebrow">Boutique Legal Practice</div>
+          <h1>Stratejik, seçici ve sonuç odaklı hukuki danışmanlık</h1>
+          <div class="hero-text">
+            Marka hukuku, fikri mülkiyet hukuku, ticaret ve şirketler hukuku alanlarında
+            bireyler ve şirketler için butik yaklaşım, dikkatli değerlendirme ve güçlü hukuki destek.
           </div>
-          <h1 className="max-w-[720px] text-4xl leading-tight tracking-[-0.03em] md:text-6xl">
-            Stratejik hukuki danışmanlık. Karmaşık işlerde rafine butik uzmanlık.
-          </h1>
-          <p className="mt-6 max-w-[650px] text-base leading-8 text-white/70 md:text-lg">
-            Bu yapı, Framer tasarımındaki ana mesajı Türkçeleştirerek devralır: seçici, prestijli ve stratejik bir hukuk pratiği. Özellikle marka hukuku, fikri mülkiyet, ticaret hukuku ve AB hukuku alanlarında konumlanan bir görünüm sunar.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <AppLink href="/contact" className="rounded-2xl bg-white px-5 py-3 text-sm text-[#0b1220]">İletişime Geç</AppLink>
-            <AppLink href="/practice-areas" className="rounded-2xl border border-white/15 px-5 py-3 text-sm">Çalışma Alanları</AppLink>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#iletisim">İletişime Geç</a>
+            <a class="btn btn-secondary" href="#alanlar">Çalışma Alanları</a>
           </div>
         </div>
-        <div className="rounded-[28px] border border-white/10 bg-white/5 p-7 shadow-2xl">
-          <div className="mb-4 text-sm text-white/60">Butik yaklaşım</div>
-          <div className="space-y-3 text-sm md:text-base">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">Uyuşmazlık öncesi risk analizi ve stratejik değerlendirme</div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">Kurumsal ve bireysel müvekkiller için seçici danışmanlık</div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">Dava, başvuru, koruma ve sözleşme süreçlerinde bütüncül yaklaşım</div>
+
+        <div class="hero-card">
+          <div class="hero-card-title">Öne çıkan yaklaşım</div>
+          <div class="mini-card">Uyuşmazlık öncesi risk analizi ve stratejik hukuki değerlendirme</div>
+          <div class="mini-card">Kurumsal ve bireysel müvekkiller için seçici danışmanlık</div>
+          <div class="mini-card">Başvuru, sözleşme, koruma ve dava süreçlerinde bütüncül yaklaşım</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="alanlar">
+      <div class="container">
+        <div class="section-kicker">Çalışma Alanları</div>
+        <h2>Temel uzmanlık alanları</h2>
+        <div class="section-intro">
+          Müvekkil ihtiyaçlarına göre şekillenen, sonuç odaklı ve yüksek dikkat gerektiren hukuk
+          hizmetleri sunulmaktadır. Özellikle marka ve fikri mülkiyet uyuşmazlıklarında stratejik
+          yaklaşım ön plandadır.
+        </div>
+
+        <div class="cards-3">
+          <div class="card">
+            <div class="card-line"></div>
+            <h3>Marka Hukuku</h3>
+            <p>Marka başvuruları, itiraz süreçleri, hükümsüzlük ve tecavüz uyuşmazlıkları ile marka portföyü yönetimine ilişkin hukuki destek.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-line"></div>
+            <h3>Fikri Mülkiyet Hukuku</h3>
+            <p>Telif, tasarım, patent ve alan adı uyuşmazlıklarında koruma stratejileri, sözleşmeler ve dava süreçlerine yönelik danışmanlık.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-line"></div>
+            <h3>Ticaret ve Şirketler Hukuku</h3>
+            <p>Şirket yapılanmaları, ticari sözleşmeler, günlük kurumsal danışmanlık ve ticari uyuşmazlıklarda hukuki değerlendirme.</p>
           </div>
         </div>
       </div>
     </section>
-  );
-}
 
-function HomePage() {
-  return (
-    <Layout>
-      <Hero />
-      <SectionHeader kicker="Çalışma Alanları" title="Temel uzmanlık alanları" intro="Framer tasarımındaki practice areas kısmı Türkçeye uyarlanarak korundu; ana sayfada kısa özet, ayrı sayfada daha detaylı anlatım yer alır." />
-      <div className="mx-auto mt-8 grid w-[min(1120px,calc(100%-40px))] gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {practiceAreas.map((area) => (
-          <PracticeCard key={area.title} title={area.title} text={area.text} />
-        ))}
+    <section id="yayinlar">
+      <div class="container">
+        <div class="section-kicker">Yayınlar</div>
+        <h2>Bilgi notları ve hukuki değerlendirmeler</h2>
+        <div class="section-intro">
+          İnternet sitesinde düzenli olarak yayınlanacak kısa bilgi notları ve değerlendirmeler için örnek alan.
+        </div>
+
+        <div class="cards-3">
+          <div class="publication-card">Marka başvurusu öncesi benzerlik araştırmasının hukuki önemi</div>
+          <div class="publication-card">Ticari sözleşmelerde temel risk alanları ve koruma yöntemleri</div>
+          <div class="publication-card">Avrupa Birliği hukuku perspektifinden fikri mülkiyet koruması</div>
+        </div>
       </div>
+    </section>
 
-      <section className="py-20">
-        <div className="mx-auto grid w-[min(1120px,calc(100%-40px))] gap-12 md:grid-cols-[1fr_0.9fr]">
+    <section id="iletisim">
+      <div class="container">
+        <div class="contact-box">
           <div>
-            <div className="mb-3 text-sm uppercase tracking-[0.22em] text-white/45">Butik Yaklaşım</div>
-            <h2 className="text-3xl tracking-[-0.02em] md:text-5xl">Tecrübe, kamu perspektifi ve akademik derinlik</h2>
+            <div class="section-kicker">İletişim</div>
+            <h2>Hukuki danışmanlık talebi için iletişime geçin</h2>
+            <div class="section-intro">
+              İlk değerlendirme için uyuşmazlığın konusu ve temel detaylarının kısa şekilde paylaşılması faydalı olur.
+              Müvekkil kabulü ve çalışma koşulları ayrıca değerlendirilmektedir.
+            </div>
           </div>
-          <div className="space-y-5 text-white/72 leading-8">
-            <p>M. Emin Anbar, İstanbul merkezli bir avukat olarak özellikle marka hukuku, fikri mülkiyet hukuku ve ticaret hukuku alanlarında çalışmaktadır. Çalışmaları; marka başvuruları, marka tecavüzü, haksız rekabet ve fikri mülkiyet uyuşmazlıklarında yoğunlaşmaktadır.</p>
-            <p>Anayasa Mahkemesi, Rekabet Kurumu, Sermaye Piyasası Kurulu ve Hazine teşkilatındaki kurumsal deneyimi; kamu hukuku, rekabet hukuku ve düzenleyici alanlarda güçlü bir perspektif sağlamıştır.</p>
-            <p>AB hukuku alanındaki akademik çalışmaları özellikle AB rekabet hukuku, AB marka ve patent hukuku ile Ortak Ticaret Politikası üzerinde yoğunlaşmaktadır.</p>
+
+          <div>
+            <div class="contact-info-item">
+              <div class="contact-info-label">E-posta</div>
+              <div>info@eminanbar.av.tr</div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-label">Konum</div>
+              <div>İstanbul, Türkiye</div>
+            </div>
+            <a class="btn btn-primary" href="mailto:info@eminanbar.av.tr">E-posta Gönder</a>
           </div>
         </div>
-      </section>
-
-      <SectionHeader kicker="Yayınlar" title="Yayınlar ve değerlendirmeler" intro="Framer sitesindeki publications bölümü burada ayrı sayfaya bağlanacak şekilde özetlenmiştir." />
-      <div className="mx-auto mt-8 grid w-[min(1120px,calc(100%-40px))] gap-6 md:grid-cols-3 pb-20">
-        {publications.map((item) => (
-          <div key={item.title} className="min-h-[180px] rounded-[24px] border border-white/10 bg-[#10192d] p-6 flex flex-col justify-end">
-            <div className="mb-3 text-sm text-white/45">{item.date}</div>
-            <div className="text-lg leading-8 text-white/90">{item.title}</div>
-          </div>
-        ))}
-      </div>
-    </Layout>
-  );
-}
-
-function SectionHeader({ kicker, title, intro }) {
-  return (
-    <section className="pt-20">
-      <div className="mx-auto w-[min(1120px,calc(100%-40px))]">
-        <div className="mb-3 text-sm uppercase tracking-[0.22em] text-white/45">{kicker}</div>
-        <h2 className="text-3xl tracking-[-0.02em] md:text-5xl">{title}</h2>
-        <p className="mt-4 max-w-[760px] text-base leading-8 text-white/72 md:text-[17px]">{intro}</p>
       </div>
     </section>
-  );
-}
+  </main>
 
-function PracticeCard({ title, text }) {
-  return (
-    <div className="min-h-[230px] rounded-[24px] border border-white/10 p-6" style={{ background: CARD, borderColor: BORDER }}>
-      <div className="mb-5 h-1 w-14 rounded-full bg-white/85" />
-      <h3 className="mb-3 text-2xl">{title}</h3>
-      <p className="text-[15px] leading-8" style={{ color: MUTED }}>{text}</p>
-    </div>
-  );
-}
-
-function PracticeAreasPage() {
-  return (
-    <Layout>
-      <SectionHeader kicker="Çalışma Alanları" title="Uzmanlık alanları" intro="Framer'daki ayrı practice areas sayfası için kod karşılığı. Her alan kendi kutusunda ve daha uzun açıklamayla yer alır." />
-      <div className="mx-auto grid w-[min(1120px,calc(100%-40px))] gap-6 py-12 md:grid-cols-2">
-        {practiceAreas.map((area) => (
-          <div key={area.title} className="rounded-[28px] border border-white/10 bg-white/5 p-8">
-            <div className="mb-5 h-1 w-16 rounded-full bg-white/85" />
-            <h2 className="mb-4 text-3xl">{area.title}</h2>
-            <p className="text-white/72 leading-8">{area.text}</p>
-          </div>
-        ))}
-      </div>
-    </Layout>
-  );
-}
-
-function PublicationsPage() {
-  return (
-    <Layout>
-      <SectionHeader kicker="Yayınlar" title="Makaleler ve kısa değerlendirmeler" intro="Framer'daki publications yapısı burada ayrı bir yayın sayfasına çevrildi. Dilersen bunlar ileride gerçek blog yazısı detay sayfalarına bağlanabilir." />
-      <div className="mx-auto space-y-6 py-12 w-[min(1120px,calc(100%-40px))]">
-        {publications.map((item) => (
-          <article key={item.title} className="rounded-[28px] border border-white/10 bg-[#10192d] p-8">
-            <div className="mb-3 text-sm uppercase tracking-[0.18em] text-white/45">{item.date}</div>
-            <h2 className="text-3xl tracking-[-0.02em]">{item.title}</h2>
-            <p className="mt-4 max-w-[820px] text-white/72 leading-8">{item.summary}</p>
-          </article>
-        ))}
-      </div>
-    </Layout>
-  );
-}
-
-function ContactPage() {
-  return (
-    <Layout>
-      <SectionHeader kicker="İletişim" title="Hukuki danışmanlık talebi için iletişime geçin" intro="Framer sitesindeki contact bölümü ayrı sayfaya taşındı. İlk temas için e-posta ve telefon bilgisini görünür tutan sade bir düzen kullanıldı." />
-      <div className="mx-auto grid w-[min(1120px,calc(100%-40px))] gap-8 py-12 md:grid-cols-[1fr_0.9fr]">
-        <div className="rounded-[28px] border border-white/10 bg-white/5 p-8">
-          <h2 className="text-3xl">İlk değerlendirme</h2>
-          <p className="mt-4 text-white/72 leading-8">Uyuşmazlığın konusu, ilgili taraflar ve temel tarih bilgileri kısa şekilde paylaşıldığında ön değerlendirme çok daha verimli yapılır. Müvekkil kabulü ve çalışma koşulları ayrıca değerlendirilir.</p>
-        </div>
-        <div className="rounded-[28px] border border-white/10 bg-white/5 p-8">
-          <div className="mb-5 rounded-2xl border border-white/10 bg-white/[0.02] p-4">
-            <div className="mb-2 text-sm text-white/50">E-posta</div>
-            <a href="mailto:av.eminanbar@gmail.com">av.eminanbar@gmail.com</a>
-          </div>
-          <div className="mb-5 rounded-2xl border border-white/10 bg-white/[0.02] p-4">
-            <div className="mb-2 text-sm text-white/50">Telefon</div>
-            <div>+90 543 594 37 57</div>
-          </div>
-          <div className="mb-6 rounded-2xl border border-white/10 bg-white/[0.02] p-4">
-            <div className="mb-2 text-sm text-white/50">Adres</div>
-            <div>Nurol Tower Plaza, Mecidiyeköy, İstanbul, Türkiye</div>
-          </div>
-          <a href="mailto:av.eminanbar@gmail.com" className="inline-block rounded-2xl bg-white px-5 py-3 text-sm text-[#0b1220]">E-posta Gönder</a>
-        </div>
-      </div>
-    </Layout>
-  );
-}
-
-export default function LawOfficeSite() {
-  const [path, setPath] = React.useState(pathOf());
-
-  React.useEffect(() => {
-    const handler = () => setPath(pathOf());
-    window.addEventListener("popstate", handler);
-    return () => window.removeEventListener("popstate", handler);
-  }, []);
-
-  if (path === "/practice-areas") return <PracticeAreasPage />;
-  if (path === "/publications") return <PublicationsPage />;
-  if (path === "/contact") return <ContactPage />;
-  return <HomePage />;
-}
+  <footer>
+    <div class="container">© 2026 M. Emin Anbar Hukuk & Danışmanlık. Tüm hakları saklıdır.</div>
+  </footer>
+</body>
+</html>
